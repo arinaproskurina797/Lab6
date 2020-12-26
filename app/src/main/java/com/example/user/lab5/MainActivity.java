@@ -39,15 +39,12 @@ public class MainActivity extends Activity {
                 glSurfaceView = new GLSurfaceView(this);
 
             if (isProbablyEmulator()) {
-                // Avoids crashes on startup with some emulator images.
                 glSurfaceView.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
             }
             glSurfaceView.setRenderer(new RendererWrapper(this));
             rendererSet = true;
             setContentView(glSurfaceView);
         } else {
-            // Should never be seen in production, since the manifest filters
-            // unsupported devices.
             Toast.makeText(this, "This device does not support OpenGL ES 2.0.",
                     Toast.LENGTH_LONG).show();
             return;
