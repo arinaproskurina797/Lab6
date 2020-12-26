@@ -32,7 +32,11 @@ public class MainActivity extends Activity {
                 = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
 
+        final boolean supportsEs2 =
+                configurationInfo.reqGlEsVersion >= 0x20000 || isProbablyEmulator();
 
+        if (supportsEs2) {
+                glSurfaceView = new GLSurfaceView(this);
 
             if (isProbablyEmulator()) {
                 // Avoids crashes on startup with some emulator images.
