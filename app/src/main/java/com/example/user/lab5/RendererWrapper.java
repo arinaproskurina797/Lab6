@@ -30,7 +30,8 @@ class RendererWrapper implements GLSurfaceView.Renderer {
         for (int i = 0; i < texture_name.length; ++i) {
             gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[i]);
             gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_LINEAR);
-            
+            InputStream is = c.getResources().openRawResource(texture_name[i]);
+            Bitmap bitmap = BitmapFactory.decodeStream(is);
             GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
             bitmap.recycle();
         }
